@@ -1,16 +1,18 @@
-package gmall.user.service.impl;
+package com.gmall.user.service.impl;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.gmall.bean.UmsMember;
 import com.gmall.bean.UmsMemberReceiveAddress;
 import com.gmall.service.UserService;
-import gmall.user.mapper.UmsMemberReceiveAddressMapper;
-import gmall.user.mapper.UserMapper;
+import com.gmall.user.mapper.UmsMemberReceiveAddressMapper;
+import com.gmall.user.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
+@Component
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired

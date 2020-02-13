@@ -1,4 +1,4 @@
-package gmall.user.mapper;
+package com.gmall.user.mapper;
 
 import com.gmall.bean.UmsMember;
 import org.springframework.stereotype.Repository;

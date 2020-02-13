@@ -34,6 +34,7 @@
         <commons-lang3.version>3.9</commons-lang3.version>
         <commons-codec.version>1.13</commons-codec.version>
         <mapper-starter.version>2.1.5</mapper-starter.version>
+        <tk-mybatis.version>2.1.5</tk-mybatis.version>
         <jedis.version>3.2.0</jedis.version>
         <jest.version>6.3.1</jest.version>
         <jna.version>5.5.0</jna.version>
@@ -122,8 +123,9 @@
             <dependency>
                 <groupId>tk.mybatis</groupId>
                 <artifactId>mapper-spring-boot-starter</artifactId>
-                <version>${mapper-starter.version}</version>
+                <version>${tk-mybatis.version}</version>
             </dependency>
+
 
             <dependency>
                 <groupId>redis.clients</groupId>
