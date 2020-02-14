@@ -11,6 +11,7 @@ import com.gmall.manager.mapper.PmsProductSaleAttrMapper;
 import com.gmall.manager.mapper.PmsProductSaleAttrValueMapper;
 import com.gmall.service.SpuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -37,6 +38,7 @@ public class SpuServiceImpl implements SpuService {
     }
 
     @Override
+    @Transactional
     public void saveSpuInfo(PmsProductInfo pmsProductInfo) {
         pmsProductInfoMapper.insertSelective(pmsProductInfo);
 
@@ -61,6 +63,7 @@ public class SpuServiceImpl implements SpuService {
     }
 
     @Override
+    @Transactional
     public List<PmsProductSaleAttr> spuSaleAttrList(String spuId) {
         PmsProductSaleAttr pmsProductSaleAttr = new PmsProductSaleAttr();
         pmsProductSaleAttr.setProductId(spuId);

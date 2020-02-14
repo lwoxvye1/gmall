@@ -11,6 +11,7 @@ import com.gmall.manager.mapper.PmsSkuInfoMapper;
 import com.gmall.manager.mapper.PmsSkuSaleAttrValueMapper;
 import com.gmall.service.SkuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
@@ -29,6 +30,7 @@ public class SkuServiceImpl implements SkuService {
 
 
     @Override
+    @Transactional
     public void saveSkuInfo(PmsSkuInfo pmsSkuInfo) {
 
         // 插入skuInfo

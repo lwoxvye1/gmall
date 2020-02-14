@@ -9,7 +9,6 @@ import com.gmall.manager.mapper.PmsBaseCatalog2Mapper;
 import com.gmall.manager.mapper.PmsBaseCatalog3Mapper;
 import com.gmall.service.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
-import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 

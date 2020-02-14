@@ -10,6 +10,7 @@ import com.gmall.manager.mapper.PmsBaseSaleAttrMapper;
 import com.gmall.service.AttrService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class AttrServiceImpl implements AttrService {
 
 
     @Override
+    @Transactional
     public List<PmsBaseAttrInfo> attrInfoList(String catalog3Id) {
         PmsBaseAttrInfo pmsBaseAttrInfo = new PmsBaseAttrInfo();
         pmsBaseAttrInfo.setCatalog3Id(catalog3Id);
@@ -42,6 +44,7 @@ public class AttrServiceImpl implements AttrService {
     }
 
     @Override
+    @Transactional
     public String saveAttrInfo(PmsBaseAttrInfo pmsBaseAttrInfo) {
         String id = pmsBaseAttrInfo.getId();
         if (StringUtils.isBlank(id)) {
