@@ -6,12 +6,11 @@
         <groupId>com.gmall</groupId>
         <artifactId>gmall-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <artifactId>gmall-manager-service</artifactId>
+    <artifactId>gmall-redisson-test</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>gmall-manager-service</name>
+    <name>gmall-redisson-test</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -21,7 +20,7 @@
     <dependencies>
         <dependency>
             <groupId>com.gmall</groupId>
-            <artifactId>gmall-api</artifactId>
+            <artifactId>gmall-web-util</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 

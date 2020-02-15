@@ -17,13 +17,21 @@
         SELECT
             sa.id as sa_id, sav.id as sav_id, sa.*, sav.*,
             if (ssav.sku_id, 1, 0) as isChecked
-        FROM pms_product_sale_attr sa
-        INNER JOIN pms_product_sale_attr_value sav
-        ON sa.product_id = #{productId}
-        AND sa.sale_attr_id = sav.sale_attr_id
-        AND sa.product_id = sav.product_id
-        LEFT JOIN pms_sku_sale_attr_value ssav
-        ON ssav.sku_id = #{skuId}
-        AND sav.id = ssav.sale_attr_value_id
+        FROM
+            pms_product_sale_attr sa
+        INNER JOIN
+            pms_product_sale_attr_value sav
+        ON
+            sa.product_id = #{productId}
+        AND
+            sa.sale_attr_id = sav.sale_attr_id
+        AND
+            sa.product_id = sav.product_id
+        LEFT JOIN
+            pms_sku_sale_attr_value ssav
+        ON
+            ssav.sku_id = #{skuId}
+        AND
+            sav.id = ssav.sale_attr_value_id
     </select>
 </mapper>

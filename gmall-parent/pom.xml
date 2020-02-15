@@ -27,6 +27,8 @@
         <dubbo.version>2.6.2</dubbo.version>
         <curator.version>4.1.0</curator.version>
         <mybatis.version>2.1.1</mybatis.version>
+        <jedis.version>2.9.0</jedis.version>
+        <redission.version>3.10.5</redission.version>
         <nekohtml.version>1.9.22</nekohtml.version>
         <xml-apis.version>1.4.01</xml-apis.version>
         <batik-ext.version>1.9.1</batik-ext.version>
@@ -36,7 +38,6 @@
         <commons-codec.version>1.13</commons-codec.version>
         <mapper-starter.version>2.1.5</mapper-starter.version>
         <tk-mybatis.version>2.1.5</tk-mybatis.version>
-        <jedis.version>3.2.0</jedis.version>
         <jest.version>6.3.1</jest.version>
         <jna.version>5.5.0</jna.version>
         <beanUtils.version>1.9.4</beanUtils.version>
@@ -90,6 +91,13 @@
                 <version>${tk-mybatis.version}</version>
             </dependency>
 
+            <!--thymeleaf支持包,可以设置松校验和热部署-->
+            <dependency>
+                <groupId>net.sourceforge.nekohtml</groupId>
+                <artifactId>nekohtml</artifactId>
+                <version>${nekohtml.version}</version>
+            </dependency>
+
             <!--redis-->
             <dependency>
                 <groupId>redis.clients</groupId>
@@ -97,12 +105,12 @@
                 <version>${jedis.version}</version>
             </dependency>
 
-            <!--thymeleaf支持包,可以设置松校验和热部署-->
             <dependency>
-                <groupId>net.sourceforge.nekohtml</groupId>
-                <artifactId>nekohtml</artifactId>
-                <version>${nekohtml.version}</version>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson</artifactId>
+                <version>${redission.version}</version>
             </dependency>
+
 
             <dependency>
                 <groupId>xml-apis</groupId>
