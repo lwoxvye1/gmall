@@ -58,4 +58,17 @@ public class SkuServiceImpl implements SkuService {
             pmsSkuImageMapper.insertSelective(pmsSkuImage);
         }
     }
+
+    @Override
+    public PmsSkuInfo getSkuById(String skuId) {
+        PmsSkuInfo skuInfo = pmsSkuInfoMapper.selectByPrimaryKey(skuId);
+
+        // sku的图片集合
+        PmsSkuImage pmsSkuImage= new PmsSkuImage();
+        pmsSkuImage.setSkuId(skuId);
+        List<PmsSkuImage> pmsSkuImages = pmsSkuImageMapper.select(pmsSkuImage);
+        skuInfo.setSkuImageList(pmsSkuImages);
+
+        return skuInfo;
+    }
 }

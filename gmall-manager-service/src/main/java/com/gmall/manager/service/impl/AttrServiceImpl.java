@@ -27,7 +27,6 @@ public class AttrServiceImpl implements AttrService {
 
 
     @Override
-    @Transactional
     public List<PmsBaseAttrInfo> attrInfoList(String catalog3Id) {
         PmsBaseAttrInfo pmsBaseAttrInfo = new PmsBaseAttrInfo();
         pmsBaseAttrInfo.setCatalog3Id(catalog3Id);

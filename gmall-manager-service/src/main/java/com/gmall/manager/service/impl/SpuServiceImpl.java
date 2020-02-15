@@ -63,7 +63,6 @@ public class SpuServiceImpl implements SpuService {
     }
 
     @Override
-    @Transactional
     public List<PmsProductSaleAttr> spuSaleAttrList(String spuId) {
         PmsProductSaleAttr pmsProductSaleAttr = new PmsProductSaleAttr();
         pmsProductSaleAttr.setProductId(spuId);
@@ -88,6 +87,15 @@ public class SpuServiceImpl implements SpuService {
         PmsProductImage pmsProductImage = new PmsProductImage();
         pmsProductImage.setProductId(spuId);
         return pmsProductImageMapper.select(pmsProductImage);
+    }
+
+    @Override
+    public List<PmsProductSaleAttr> spuSaleAttrListCheckBySku(String productId, String skuId) {
+        List<PmsProductSaleAttr> pmsProductSaleAttrs =
+                pmsProductSaleAttrMapper.selectSpuSaleAttrListCheckBySku(
+                        productId, skuId);
+
+        return pmsProductSaleAttrs;
     }
 
 }
