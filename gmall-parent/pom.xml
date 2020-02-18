@@ -118,13 +118,25 @@
                 <version>${xml-apis.version}</version>
             </dependency>
 
+            <!--elasticsearch-->
+            <dependency>
+                <groupId>io.searchbox</groupId>
+                <artifactId>jest</artifactId>
+                <version>${jest.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.java.dev.jna</groupId>
+                <artifactId>jna</artifactId>
+                <version>${jna.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.apache.xmlgraphics</groupId>
                 <artifactId>batik-ext</artifactId>
                 <version>${batik-ext.version}</version>
             </dependency>
 
-            <!---->
             <dependency>
                 <groupId>org.jsoup</groupId>
                 <artifactId>jsoup</artifactId>
@@ -147,20 +159,6 @@
                 <groupId>commons-codec</groupId>
                 <artifactId>commons-codec</artifactId>
                 <version>${commons-codec.version}</version>
-            </dependency>
-
-            <!-- https://mvnrepository.com/artifact/io.searchbox/jest -->
-            <dependency>
-                <groupId>io.searchbox</groupId>
-                <artifactId>jest</artifactId>
-                <version>${jest.version}</version>
-            </dependency>
-
-            <!-- https://mvnrepository.com/artifact/net.java.dev.jna/jna -->
-            <dependency>
-                <groupId>net.java.dev.jna</groupId>
-                <artifactId>jna</artifactId>
-                <version>${jna.version}</version>
             </dependency>
 
             <dependency>

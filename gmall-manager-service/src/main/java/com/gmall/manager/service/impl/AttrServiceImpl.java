@@ -12,7 +12,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class AttrServiceImpl implements AttrService {
@@ -86,5 +89,14 @@ public class AttrServiceImpl implements AttrService {
     @Override
     public List<PmsBaseSaleAttr> baseSaleAttrList() {
         return pmsBaseSaleAttrMapper.selectAll();
+    }
+
+    @Override
+    public List<PmsBaseAttrInfo> getAttrValueListByValueId(Set<String> valueIdSet) {
+        if (valueIdSet == null || valueIdSet.size() == 0){
+            return new ArrayList<>();
+        }
+        String valueIdStr = StringUtils.join(valueIdSet, ",");
+        return pmsBaseAttrInfoMapper.selectAttrValueListByValueId(valueIdStr);
     }
 }
