@@ -87,7 +87,7 @@ public class SkuServiceImpl implements SkuService {
         String skuKey = "sku:"+skuId+":info";
         String skuJson = jedis.get(skuKey);
 
-        if(StringUtils.isNotBlank(skuJson)){//if(skuJson!=null&&!skuJson.equals(""))
+        if(StringUtils.isNotBlank(skuJson)){
             pmsSkuInfo = JSON.parseObject(skuJson, PmsSkuInfo.class);
         }else{
             // 如果缓存中没有，查询mysql
@@ -111,7 +111,7 @@ public class SkuServiceImpl implements SkuService {
                 String lockToken = jedis.get(k);
                 if (StringUtils.isNotBlank(lockToken) && lockToken.equals(v)) {
                     // 如果刚刚好判断成功后过期，仍然会删除别人的锁
-                    String script = "if redis.call('get', KEYS(1)) == ARGV[1]" +
+                    String script = "if redis.call('get', KEYS[1]) == ARGV[1]" +
                             "then return redis.call('del', KEYS[1])" +
                             "else return 0 end";
                     jedis.eval(script, Collections.singletonList(k),
