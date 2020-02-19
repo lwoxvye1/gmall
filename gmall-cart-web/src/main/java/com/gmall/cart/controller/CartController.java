@@ -2,6 +2,7 @@ package com.gmall.cart.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSON;
+import com.gmall.annotations.LoginRequired;
 import com.gmall.bean.OmsCartItem;
 import com.gmall.bean.PmsSkuInfo;
 import com.gmall.service.CartService;
@@ -28,11 +29,12 @@ public class CartController {
     @Reference
     CartService cartService;
 
+    @LoginRequired(loginSuccess = false)
     @RequestMapping("/addToCart")
     public String addToCart(String skuId, BigDecimal quantity,
                             HttpServletRequest request, HttpServletResponse response){
+        String memberId = (String)request.getAttribute("memberId");
         PmsSkuInfo skuInfo = skuService.getSkuById(skuId);
-        String memberId = "1";
         List<OmsCartItem> omsCartItems = new ArrayList<>();
 
         OmsCartItem omsCartItem = new OmsCartItem();
@@ -98,10 +100,11 @@ public class CartController {
         return "redirect:/success.html";
     }
 
+    @LoginRequired(loginSuccess = false)
     @RequestMapping("/cartList")
     public String cartList(HttpServletRequest request, ModelMap modelMap){
         List<OmsCartItem> omsCartItems = new ArrayList<>();
-        String memberId = "1";
+        String memberId = (String)request.getAttribute("memberId");
 
         if (StringUtils.isNotBlank(memberId)) {
             omsCartItems = cartService.cartList(memberId);
@@ -125,9 +128,11 @@ public class CartController {
         return "cartList";
     }
 
-    @RequestMapping("checkCart")
-    public String checkCart(String isChecked, String skuId, ModelMap modelMap){
-        String memberId = "1";
+    @LoginRequired(loginSuccess = false)
+    @RequestMapping("/checkCart")
+    public String checkCart(String isChecked, String skuId, ModelMap modelMap,
+                            HttpServletRequest request){
+        String memberId = (String)request.getAttribute("memberId");
 
         OmsCartItem omsCartItem = new OmsCartItem();
         omsCartItem.setMemberId(memberId);
@@ -140,6 +145,12 @@ public class CartController {
         BigDecimal totalAmount = getTotalAmount(omsCartItems);
         modelMap.put("totalAmount", totalAmount);
         return "cartListInner";
+    }
+
+    @LoginRequired(loginSuccess = true)
+    @RequestMapping("/toTrade")
+    public String toTrade(){
+        return "toTrade";
     }
 
     private boolean if_cart_exist(List<OmsCartItem> omsCartItems,

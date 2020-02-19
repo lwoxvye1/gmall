@@ -1,4 +1,4 @@
-package com.gmall.user;
+package com.gmall;
 
 import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
 import tk.mybatis.spring.annotation.MapperScan;

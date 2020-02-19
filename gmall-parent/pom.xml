@@ -32,6 +32,7 @@
         <nekohtml.version>1.9.22</nekohtml.version>
         <xml-apis.version>1.4.01</xml-apis.version>
         <batik-ext.version>1.9.1</batik-ext.version>
+        <jjwt.version>0.9.1</jjwt.version>
         <jsoup.version>1.12.1</jsoup.version>
         <httpclient.version>4.5.10</httpclient.version>
         <commons-lang3.version>3.9</commons-lang3.version>
@@ -111,7 +112,6 @@
                 <version>${redission.version}</version>
             </dependency>
 
-
             <dependency>
                 <groupId>xml-apis</groupId>
                 <artifactId>xml-apis</artifactId>
@@ -137,17 +137,26 @@
                 <version>${batik-ext.version}</version>
             </dependency>
 
+            <!--jwt(json web token)-->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+
+            <!--通过java发送http请求的工具-->
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${httpclient.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.jsoup</groupId>
                 <artifactId>jsoup</artifactId>
                 <version>${jsoup.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>org.apache.httpcomponents</groupId>
-                <artifactId>httpclient</artifactId>
-                <version>${httpclient.version}</version>
-            </dependency>
 
             <dependency>
                 <groupId>org.apache.commons</groupId>

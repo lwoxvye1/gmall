@@ -1,13 +1,13 @@
-package com.gmall.user;
+package com.gmall;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GmallUserWebApplication {
+public class GmallItemWebApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GmallUserWebApplication.class, args);
+        SpringApplication.run(GmallItemWebApplication.class, args);
     }
 
 }
