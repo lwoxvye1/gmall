@@ -147,12 +147,6 @@ public class CartController {
         return "cartListInner";
     }
 
-    @LoginRequired(loginSuccess = true)
-    @RequestMapping("/toTrade")
-    public String toTrade(){
-        return "toTrade";
-    }
-
     private boolean if_cart_exist(List<OmsCartItem> omsCartItems,
                                   OmsCartItem omsCartItem) {
         boolean flag = false;
@@ -170,11 +164,17 @@ public class CartController {
         BigDecimal totalAmount = new BigDecimal("0");
 
         for (OmsCartItem omsCartItem : omsCartItems) {
-            if (omsCartItem.getIsChecked().equals("1")) {
+            if ("1".equals(omsCartItem.getIsChecked())) {
                 BigDecimal totalPrice = omsCartItem.getTotalPrice();
                 totalAmount = totalAmount.add(totalPrice);
             }
         }
         return totalAmount;
+    }
+
+    @RequestMapping("/toTrade")
+    @LoginRequired(loginSuccess = true)
+    public String toTrade(){
+        return "toTrade";
     }
 }

@@ -66,7 +66,7 @@ public class PassportController {
         Map<String, String> map = new HashMap<>();
 
         Map<String, Object> decode = JwtUtil.decode(
-                "2019gmall0219", token, currentIp);
+                token, "2019gmall0219", currentIp);
 
         if (decode != null) {
             map.put("status", "success");

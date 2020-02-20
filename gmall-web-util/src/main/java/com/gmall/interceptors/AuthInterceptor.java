@@ -58,7 +58,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             // 方法得不到客户端的ip
              String successJson = HttpclientUtil.doGet(
                      "http://passport.gmall.com:8085/verify?token="
-                             + token + "&currentIp" + ip);
+                             + token + "&currentIp=" + ip);
             successMap = JSON.parseObject(successJson, Map.class);
             success = successMap.get("status");
         }
@@ -69,7 +69,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
                 // 重定向回passport登录
                 StringBuffer requestURL = request.getRequestURL();
                 response.sendRedirect(
-                        "http://passport.gmall.com:8085/index?ReturnUrl" + requestURL);
+                        "http://passport.gmall.com:8085/index?ReturnUrl=" + requestURL);
                 return false;
             }
         } else {
