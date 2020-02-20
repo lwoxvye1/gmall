@@ -10,7 +10,6 @@ import com.gmall.user.mapper.UmsMemberReceiveAddressMapper;
 import com.gmall.user.mapper.UserMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import tk.mybatis.mapper.entity.Example;
 
@@ -74,6 +73,16 @@ public class UserServiceImpl implements UserService {
 
         jedis.setex("user:" + memberId + ":token", 60 * 60 * 2, token);
         jedis.close();
+    }
+
+    @Override
+    public void addOauthUser(UmsMember umsMember){
+        userMapper.insertSelective(umsMember);
+    }
+
+    @Override
+    public UmsMember checkOauthUser(UmsMember umsCheck) {
+        return userMapper.selectOne(umsCheck);
     }
 
     private UmsMember loginFromDb(UmsMember umsMember) {
