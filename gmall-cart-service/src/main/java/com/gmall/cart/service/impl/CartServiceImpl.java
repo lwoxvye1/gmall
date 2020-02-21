@@ -8,6 +8,7 @@ import com.gmall.service.CartService;
 import com.gmall.service.util.RedisUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import redis.clients.jedis.Jedis;
 import tk.mybatis.mapper.entity.Example;
 

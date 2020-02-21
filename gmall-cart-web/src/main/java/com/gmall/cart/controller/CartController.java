@@ -117,8 +117,7 @@ public class CartController {
         }
 
         for (OmsCartItem omsCartItem : omsCartItems) {
-            omsCartItem.setTotalPrice(omsCartItem.getPrice().multiply(
-                    omsCartItem.getQuantity()));
+            omsCartItem.setTotalPrice(omsCartItem.getPrice().multiply(omsCartItem.getQuantity()));
         }
         modelMap.put("cartList", omsCartItems);
 
@@ -170,11 +169,5 @@ public class CartController {
             }
         }
         return totalAmount;
-    }
-
-    @RequestMapping("/toTrade")
-    @LoginRequired(loginSuccess = true)
-    public String toTrade(){
-        return "toTrade";
     }
 }

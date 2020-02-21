@@ -6,29 +6,29 @@ import java.math.BigDecimal;
 public class OmsOrderItem implements Serializable {
 
     private String id;
-    private String         orderId;
+    private String orderId;
     private String orderSn;
-    private String         productId;
+    private String productId;
     private String productPic;
-    private String        productName;
+    private String productName;
     private String productBrand;
-    private String         productSn;
-    private String productPrice;
-    private int         productQuantity;
+    private String productSn;
+    private BigDecimal productPrice;
+    private BigDecimal productQuantity;
     private String productSkuId;
-    private String        productSkuCode;
+    private String productSkuCode;
     private String productCategoryId;
-    private String         sp1;
+    private String sp1;
     private String sp2;
-    private String        sp3;
+    private String sp3;
     private String promotionName;
     private BigDecimal promotionAmount;
     private BigDecimal couponAmount;
-    private BigDecimal         integrationAmount;
-    private String realAmount;
-    private int        giftIntegration;
+    private BigDecimal integrationAmount;
+    private BigDecimal realAmount;
+    private int giftIntegration;
     private int giftGrowth;
-    private String        productAttr;
+    private String productAttr;
 
 
     public String getId() {
@@ -95,19 +95,19 @@ public class OmsOrderItem implements Serializable {
         this.productSn = productSn;
     }
 
-    public String getProductPrice() {
+    public BigDecimal getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(String productPrice) {
+    public void setProductPrice(BigDecimal productPrice) {
         this.productPrice = productPrice;
     }
 
-    public int getProductQuantity() {
+    public BigDecimal getProductQuantity() {
         return productQuantity;
     }
 
-    public void setProductQuantity(int productQuantity) {
+    public void setProductQuantity(BigDecimal productQuantity) {
         this.productQuantity = productQuantity;
     }
 
@@ -191,11 +191,11 @@ public class OmsOrderItem implements Serializable {
         this.integrationAmount = integrationAmount;
     }
 
-    public String getRealAmount() {
+    public BigDecimal getRealAmount() {
         return realAmount;
     }
 
-    public void setRealAmount(String realAmount) {
+    public void setRealAmount(BigDecimal realAmount) {
         this.realAmount = realAmount;
     }
 
