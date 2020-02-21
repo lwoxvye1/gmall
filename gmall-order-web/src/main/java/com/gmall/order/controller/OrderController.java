@@ -141,7 +141,7 @@ public class OrderController {
         } else {
             return "tradeFail";
         }
-        return null;
+        return "list";
     }
 
 
