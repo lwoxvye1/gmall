@@ -27,9 +27,6 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     OmsOrderItemMapper omsOrderItemMapper;
 
-    @Reference
-    CartService cartService;
-
     @Override
     public String generateTradeCode(String memberId) {
         Jedis jedis = redisUtil.getJedis();
@@ -69,5 +66,12 @@ public class OrderServiceImpl implements OrderService {
             // 删除购物车数据
 //            cartService.delCart();
         }
+    }
+
+    @Override
+    public OmsOrder getOrderByOutTradeNo(String outTradeNo) {
+       OmsOrder omsOrder = new OmsOrder();
+       omsOrder.setOrderSn(outTradeNo);
+       return omsOrderMapper.selectOne(omsOrder);
     }
 }

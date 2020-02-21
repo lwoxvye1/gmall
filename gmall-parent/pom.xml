@@ -37,6 +37,7 @@
         <httpclient.version>4.5.10</httpclient.version>
         <commons-lang3.version>3.9</commons-lang3.version>
         <commons-codec.version>1.13</commons-codec.version>
+        <alipay.version>3.0.0</alipay.version>
         <mapper-starter.version>2.1.5</mapper-starter.version>
         <tk-mybatis.version>2.1.5</tk-mybatis.version>
         <jest.version>6.3.1</jest.version>
@@ -151,6 +152,14 @@
                 <version>${httpclient.version}</version>
             </dependency>
 
+            <!--支付宝API-->
+            <dependency>
+                <groupId>com.alipay.sdk</groupId>
+                <artifactId>alipay-sdk-java</artifactId>
+                <version>${alipay.version}</version>
+            </dependency>
+
+            <!--其他-->
             <dependency>
                 <groupId>org.jsoup</groupId>
                 <artifactId>jsoup</artifactId>

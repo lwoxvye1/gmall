@@ -13,6 +13,7 @@ import com.gmall.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -70,8 +71,8 @@ public class OrderController {
 
     @RequestMapping("/submitOrder")
     @LoginRequired(loginSuccess = true)
-    public String submitOrder (String receiveAddressId, BigDecimal totalAmount,
-                               String tradeCode, HttpServletRequest request){
+    public ModelAndView submitOrder (String receiveAddressId, BigDecimal totalAmount,
+                                     String tradeCode, HttpServletRequest request){
         String memberId = (String) request.getAttribute("memberId");
         String nickname = (String) request.getAttribute("nickname");
 
@@ -117,7 +118,7 @@ public class OrderController {
                     // 检价
                     boolean b = skuService.checkPrice(omsCartItem.getProductSkuId(), omsCartItem.getPrice());
                     if (!b){
-                        return "tradeFail";
+                        return new ModelAndView("tradeFail");
                     }
                     // 验库存，远程调用库存系统
 
@@ -138,10 +139,16 @@ public class OrderController {
             }
             omsOrder.setOmsOrderItems(omsOrderItems);
             orderService.saveOrder(omsOrder);
+
+            // 如果为了安全，可以不传递任何参数，这里为了方便
+            ModelAndView mv = new ModelAndView(
+                    "redirect:http://payment.gmall.com:8087/index");
+            mv.addObject("outTradeNo", outTradeNo);
+            mv.addObject("totalAmount", totalAmount);
+            return mv;
         } else {
-            return "tradeFail";
+            return new ModelAndView("tradeFail");
         }
-        return "list";
     }
 
 
