@@ -33,6 +33,7 @@
         <xml-apis.version>1.4.01</xml-apis.version>
         <batik-ext.version>1.9.1</batik-ext.version>
         <jjwt.version>0.9.1</jjwt.version>
+        <activemq-pool.version>5.15.11</activemq-pool.version>
         <jsoup.version>1.12.1</jsoup.version>
         <httpclient.version>4.5.10</httpclient.version>
         <commons-lang3.version>3.9</commons-lang3.version>
@@ -157,6 +158,13 @@
                 <groupId>com.alipay.sdk</groupId>
                 <artifactId>alipay-sdk-java</artifactId>
                 <version>${alipay.version}</version>
+            </dependency>
+
+            <!--activeMQ-->
+            <dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-pool</artifactId>
+                <version>${activemq-pool.version}</version>
             </dependency>
 
             <!--其他-->

@@ -1,4 +1,4 @@
-package com.gmall.config;
+package com.gmall.payment.config;
 
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;

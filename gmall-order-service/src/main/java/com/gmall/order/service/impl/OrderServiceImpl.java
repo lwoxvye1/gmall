@@ -6,12 +6,16 @@ import com.gmall.bean.OmsOrder;
 import com.gmall.bean.OmsOrderItem;
 import com.gmall.order.mapper.OmsOrderItemMapper;
 import com.gmall.order.mapper.OmsOrderMapper;
-import com.gmall.service.CartService;
 import com.gmall.service.OrderService;
+import com.gmall.service.util.ActiveMQUtil;
 import com.gmall.service.util.RedisUtil;
+import org.apache.activemq.command.ActiveMQMapMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import redis.clients.jedis.Jedis;
+import tk.mybatis.mapper.entity.Example;
+
+import javax.jms.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
@@ -26,6 +30,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     OmsOrderItemMapper omsOrderItemMapper;
+
+    @Autowired
+    ActiveMQUtil activeMQUtil;
 
     @Override
     public String generateTradeCode(String memberId) {
@@ -43,7 +50,7 @@ public class OrderServiceImpl implements OrderService {
         try (Jedis jedis = redisUtil.getJedis()) {
             String tradeKey = "user:" + memberId + ":tradeCode";
             String script = "if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end";
-            Long eval = (Long)jedis.eval(script, Collections.singletonList(tradeKey),
+            Long eval = (Long) jedis.eval(script, Collections.singletonList(tradeKey),
                     Collections.singletonList(tradeCode));
             if (eval != null && eval != 0) {
                 return "success";
@@ -70,8 +77,51 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OmsOrder getOrderByOutTradeNo(String outTradeNo) {
-       OmsOrder omsOrder = new OmsOrder();
-       omsOrder.setOrderSn(outTradeNo);
-       return omsOrderMapper.selectOne(omsOrder);
+        OmsOrder omsOrder = new OmsOrder();
+        omsOrder.setOrderSn(outTradeNo);
+        return omsOrderMapper.selectOne(omsOrder);
+    }
+
+    @Override
+    public void updateOrder(OmsOrder omsOrder) {
+        Example example = new Example(OmsOrder.class);
+        example.createCriteria().andEqualTo("orderSn", omsOrder.getOrderSn());
+
+        OmsOrder omsOrderUpdate = new OmsOrder();
+        omsOrder.setStatus(1);
+
+        Connection connection = null;
+        Session session = null;
+
+        try {
+            connection = activeMQUtil.getConnectionFactory()
+                    .createConnection();
+            session = connection.createSession(true,
+                    Session.SESSION_TRANSACTED);
+
+            Queue order_pay_queue = session.createQueue(
+                    "ORDER_PAY_QUEUE");
+            MessageProducer producer = session.createProducer(
+                    order_pay_queue);
+            MapMessage mapMessage = new ActiveMQMapMessage();
+
+            omsOrderMapper.updateByExampleSelective(omsOrderUpdate, example);
+            producer.send(mapMessage);
+
+            session.commit();
+        } catch (Exception ex){
+            // 消息回滚
+            try {
+                session.rollback();
+            } catch (JMSException exc) {
+                exc.printStackTrace();
+            }
+        } finally {
+            try {
+                connection.close();
+            } catch (JMSException ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 }

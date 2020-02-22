@@ -8,7 +8,7 @@ import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.gmall.annotations.LoginRequired;
 import com.gmall.bean.OmsOrder;
 import com.gmall.bean.PaymentInfo;
-import com.gmall.config.AlipayConfig;
+import com.gmall.payment.config.AlipayConfig;
 import com.gmall.service.OrderService;
 import com.gmall.service.PaymentService;
 import org.apache.commons.lang3.StringUtils;
@@ -118,7 +118,6 @@ public class PaymentController {
 
         }
 
-        // 支付成功后，引起的系统服务-》订单服务的更新-》库存服务-》物流
         return "finish";
     }
 

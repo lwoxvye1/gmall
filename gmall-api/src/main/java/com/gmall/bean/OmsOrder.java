@@ -29,7 +29,7 @@ public class OmsOrder implements Serializable {
     private BigDecimal discountAmount;
     private int payType;
     private int sourceType;
-    private int status;
+    private Integer status;
     private String orderType;
     private String deliveryCompany;
     private String deliverySn;
@@ -182,11 +182,11 @@ public class OmsOrder implements Serializable {
         this.sourceType = sourceType;
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

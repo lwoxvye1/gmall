@@ -1,4 +1,4 @@
-package com.gmall.config;
+package com.gmall.payment.config;
 
 import com.gmall.interceptors.AuthInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
