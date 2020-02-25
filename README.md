@@ -1,6 +1,8 @@
 # gmall
 分布式电子商务网站
 
+技术栈：SpringBoot + MySQL + MyBatis + Dubbo + Zookeeper + Redis + ElasticSearch + ActiveMQ
+
 gmall-user-service用户服务的service层8070
 gmall-user-web用户服务的web层8080
 

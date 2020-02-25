@@ -47,7 +47,6 @@ public class PaymentServiceImpl implements PaymentService {
                 "已支付".equals(paymentInfoResult.getPaymentStatus())){
             return ;
         }
-
         String orderSn = paymentInfo.getOrderSn();
         Example e = new Example(PaymentInfo.class);
         e.createCriteria().andEqualTo("orderSn", orderSn);
